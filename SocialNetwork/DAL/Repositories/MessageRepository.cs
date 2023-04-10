@@ -1,7 +1,4 @@
-﻿using SocialNetwork.DAL.Entities;
-using System.Collections.Generic;
-
-namespace SocialNetwork.DAL.Repositories
+﻿namespace SocialNetwork.DAL.Repositories
 {
     public class MessageRepository : BaseRepository, IMessageRepository
     {
