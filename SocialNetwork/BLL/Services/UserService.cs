@@ -1,4 +1,5 @@
-﻿using System;
+﻿using SocialNetwork.BLL.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -8,7 +9,7 @@ namespace SocialNetwork.BLL.Services
 {
     public class UserService
     {
-        public void Register()
+        public void Register(UserRegistrationData userRegistrationData)
         {
 
         }
