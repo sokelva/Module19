@@ -1,4 +1,4 @@
-﻿
+﻿using SocialNetwork.DAL.Entities;
 
 namespace SocialNetwork.DAL.Repositories
 {

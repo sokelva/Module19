@@ -1,4 +1,5 @@
-﻿
+﻿using SocialNetwork.DAL.Entities;
+
 namespace SocialNetwork.DAL.Repositories
 {
     public class FriendRepository : BaseRepository, IFriendRepository

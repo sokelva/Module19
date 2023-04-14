@@ -1,4 +1,6 @@
-﻿namespace SocialNetwork.DAL.Repositories
+﻿using SocialNetwork.DAL.Entities;
+
+namespace SocialNetwork.DAL.Repositories
 {
     public class MessageRepository : BaseRepository, IMessageRepository
     {
