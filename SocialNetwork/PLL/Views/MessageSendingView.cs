@@ -12,6 +12,7 @@ namespace SocialNetwork.PLL.Views
     {
         UserService userService;
         MessageService messageService;
+
         public MessageSendingView(MessageService messageService, UserService userService)
         {
             this.messageService = messageService;
