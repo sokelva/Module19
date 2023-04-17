@@ -34,7 +34,7 @@ namespace SocialNetwork
             messageSendingView = new MessageSendingView(messageService,userService);
             userIncomingMessageView = new UserIncomingMessageView();
             userOutcomingMessageView = new UserOutcomingMessageView();
-            friendView = new FriendView();
+            friendView = new FriendView(userService);
 
             while (true)
             {

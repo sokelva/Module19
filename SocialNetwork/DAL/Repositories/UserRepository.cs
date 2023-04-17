@@ -1,4 +1,5 @@
-﻿using SocialNetwork.DAL.Entities;
+﻿using SocialNetwork.BLL.Models;
+using SocialNetwork.DAL.Entities;
 
 namespace SocialNetwork.DAL.Repositories
 {
@@ -8,6 +9,12 @@ namespace SocialNetwork.DAL.Repositories
         {
             return Execute(@"insert into users (firstname,lastname,password,email) 
                              values (:firstname,:lastname,:password,:email)", userEntity);
+        }
+
+        public int CreateFriend(UserEntity userEntity)
+        {
+            return Execute(@"insert into friends (user_id,friend_id) 
+                             values (:user_id,:friend_id)", userEntity);
         }
 
         public IEnumerable<UserEntity> FindAll()
@@ -40,6 +47,7 @@ namespace SocialNetwork.DAL.Repositories
     public interface IUserRepository
     {
         int Create(UserEntity userEntity);
+        int CreateFriend(UserEntity userEntity);
         UserEntity FindByEmail(string email);
         IEnumerable<UserEntity> FindAll();
         UserEntity FindById(int id);

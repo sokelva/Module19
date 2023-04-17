@@ -14,5 +14,7 @@ namespace SocialNetwork.DAL.Entities
         public string photo { get; set; }
         public string favorite_movie { get; set; }
         public string favorite_book { get; set; }
+        public int friend_id { get; set; }
+        public int user_id { get; set; }
     }
 }

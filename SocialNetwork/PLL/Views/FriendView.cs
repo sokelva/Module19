@@ -6,40 +6,46 @@ using SocialNetwork.DAL.Repositories;
 using SocialNetwork.PLL.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 
 namespace SocialNetwork.PLL.Views
 {
     public  class FriendView
     {
-        
-        public void Show(UserEntity friend)
+
+        UserService userService;
+       // FriendData friendData;
+
+        public FriendView(UserService userService)
         {
+            this.userService = userService;
+        }
+
+        public void Show(User user)
+        {
+
             var friendData = new FriendData();
-            var userService = new UserService();
 
             Console.WriteLine("Введите Email друга:");
             friendData.email = Console.ReadLine();
 
             try
 			{
-                var user = userService.FindByEmail(friend.email);
+                var u = userService.FindByEmail(friendData.email);
+                friendData.friend_id = u.Id;
+                friendData.user_id = user.Id;
 
-
-                if (user == null)
+                if (u == null)
                 {
-                    Console.WriteLine("Друзей нет.");
+                    Console.WriteLine("Такой пользователь отсутствует.");
                     return;
                 }
-                else if (user != null)
+                else if (u != null)
                 {
-                    Console.WriteLine($"Друзья: {friend.firstname +" "+ friend.lastname}\n");
+                    userService.AddFriend(friendData);
+                    SuccessMessage.Show("Друг #3 успешно добавлен!");
                 }
-
-                //user.ToList().ForEach(friend =>
-                //{
-                //    Console.WriteLine($"Друзья: {friend.Email + " " + friend.friend_id}\n");
-                //});
             }
             catch (UserNotFoundException)
             {

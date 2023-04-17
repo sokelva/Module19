@@ -1,5 +1,6 @@
 ﻿using SocialNetwork.BLL.Models;
 using SocialNetwork.BLL.Services;
+using SocialNetwork.DAL.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace SocialNetwork.PLL.Views
             {
                 Console.WriteLine("Входящие сообщения: {0}", user.IncomingMessages.Count());
                 Console.WriteLine("Исходящие сообщения: {0}", user.OutgoingMessages.Count());
-                Console.WriteLine("Друзья: {0}", user.FriendInfo);
+                Console.WriteLine("Друзей: {0}", user.Id);
 
                 Console.WriteLine("Просмотреть информацию о моём профиле (нажмите 1)");
                 Console.WriteLine("Редактировать мой профиль (нажмите 2)");
@@ -70,7 +71,7 @@ namespace SocialNetwork.PLL.Views
 
                     case "8":
                         {
-                            Program.friendView.Show(user.FriendInfo);
+                            Program.friendView.Show(user);
                             break;
                         }
                 }

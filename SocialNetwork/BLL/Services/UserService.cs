@@ -75,12 +75,16 @@ namespace SocialNetwork.BLL.Services
             return ConstructUserModel(findUserEntity);
         }
 
-        public User AddFriend(string email)
+        public void AddFriend(FriendData friendData)
         {
-            var findUserEntity = userRepository.FindByEmail(email);
-            if (findUserEntity is null) throw new UserNotFoundException();
+            var userEntity = new UserEntity()
+            {
+                friend_id = friendData.friend_id,
+                user_id = friendData.user_id
+            };
 
-            return ConstructUserModel(findUserEntity);
+            if (this.userRepository.CreateFriend(userEntity) == 0)
+                throw new Exception();
         }
 
         public User FindById(int id)
@@ -102,7 +106,9 @@ namespace SocialNetwork.BLL.Services
                 email = user.Email,
                 photo = user.Photo,
                 favorite_movie = user.FavoriteMovie,
-                favorite_book = user.FavoriteBook
+                favorite_book = user.FavoriteBook,
+                friend_id = user.friend_id,
+                user_id = user.user_id
             };
 
             if (this.userRepository.Update(updatableUserEntity) == 0)
@@ -115,8 +121,6 @@ namespace SocialNetwork.BLL.Services
 
             var outgoingMessages = messageService.GetOutcomingMessagesByUserId(userEntity.id);
 
-            var friendInfo = userRepository.FindByEmail(userEntity.email);
-
             return new User(userEntity.id,
                           userEntity.firstname,
                           userEntity.lastname,
@@ -125,9 +129,10 @@ namespace SocialNetwork.BLL.Services
                           userEntity.photo,
                           userEntity.favorite_movie,
                           userEntity.favorite_book,
+                          userEntity.friend_id,
+                          userEntity.user_id,
                           incomingMessages,
-                          outgoingMessages,
-                          friendInfo
+                          outgoingMessages
                           );
         }
     }
