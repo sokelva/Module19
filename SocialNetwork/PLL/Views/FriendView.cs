@@ -44,7 +44,7 @@ namespace SocialNetwork.PLL.Views
                 else if (u != null)
                 {
                     userService.AddFriend(friendData);
-                    SuccessMessage.Show("Друг #3 успешно добавлен!");
+                    SuccessMessage.Show("Друг успешно добавлен!");
                 }
             }
             catch (UserNotFoundException)
